@@ -1,0 +1,13 @@
+html, body { height: 100%; }
+
+html,
+body {
+  background-image: url("assets/img/mercado.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
