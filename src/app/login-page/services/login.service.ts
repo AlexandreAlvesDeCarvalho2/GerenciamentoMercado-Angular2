@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { take } from 'rxjs';
+import { first, take, tap } from 'rxjs';
+import { Login } from '../model/login';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,20 @@ export class LoginService {
   private readonly API = 'api';
 
 
-  PostService(NewRegistro: any){
+  PostService(login: any){
 
     window.location.reload()
-    console.log(this.API+"/Logar")
-    return this.httpClient.post(this.API + "/Logar", NewRegistro).pipe(take(1));
+    console.log(this.API+"/logar")
 
+    return this.httpClient.post(this.API + "/logar", login).pipe(take(1));
+
+  }
+
+  Musicalist() {
+    return this.httpClient.get<Login[]>(this.API + + '/Login').pipe(
+      first(),
+      tap((logins) => console.log(logins))
+    );
   }
 
 

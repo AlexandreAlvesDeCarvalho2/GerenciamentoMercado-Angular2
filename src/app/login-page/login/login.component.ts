@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Login } from '../model/login';
 import { LoginService } from '../services/login.service';
 
@@ -8,8 +10,11 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  logins: Observable<Login[]>;
 
-  constructor(private loginService: LoginService){}
+  constructor(private loginService: LoginService){
+    this.logins = this.loginService.Musicalist();
+  }
 
   ngOnInit(): void {
   }
@@ -17,7 +22,7 @@ export class LoginComponent implements OnInit {
 
 
 PostMethod() {
-  const NewLogin: Login = {
+  const login: Login = {
 
     idusuario: 0,
     email: (<HTMLInputElement>document.getElementById('email')).value,
@@ -26,13 +31,14 @@ PostMethod() {
 
   };
 
-  console.log(NewLogin);
-  this.loginService.PostService(NewLogin).subscribe(
+  console.log(login);
+  this.loginService.PostService(login).subscribe(
     (sucesso) => console.log('sucesso'),
     (error) => console.log(error),
     () => console.log
     );
-    {alert("test")}
+
+    {alert(login.email)}
 }
 
 
