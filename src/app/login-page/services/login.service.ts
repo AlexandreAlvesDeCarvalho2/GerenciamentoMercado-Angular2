@@ -17,7 +17,7 @@ export class LoginService {
     window.location.reload()
     console.log(this.API+"/logar")
 
-    return this.httpClient.post(this.API + "/logar", login).pipe(take(1));
+    return this.httpClient.get(this.API + "/Login").pipe(take(1));
 
   }
 
